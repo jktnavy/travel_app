@@ -1,0 +1,58 @@
+Continue the Deny Trans backoffice project by building the Filament 5 admin resources.
+
+Tasks:
+1. Create Filament resources for:
+   - Customer
+   - TravelRoute
+   - PickupPoint
+   - Vehicle
+   - Driver
+   - Schedule
+   - Booking
+   - Payment
+   - Ticket
+   - User
+
+2. Organize navigation into groups:
+   - Master Data
+   - Operations
+   - Finance
+   - System
+
+3. Add role-based navigation visibility:
+   - admin sees operational modules
+   - finance sees payments and finance-related areas
+   - owner sees dashboards, reports, and read-only business views where appropriate
+
+4. For each resource:
+   - create a clean form schema
+   - create a searchable, sortable, filterable table
+   - add detail / infolist pages
+   - add validation rules
+   - use enum labels and badges where appropriate
+
+5. BookingResource requirements:
+   - show booking code, customer, route, schedule, passenger count, total amount, booking status, payment status
+   - add filters for booking status, payment status, date range, route
+   - add actions for confirm booking, cancel booking, and view payment/ticket
+
+6. ScheduleResource requirements:
+   - show route, departure date, departure time, vehicle, driver, seat capacity, booked seats, available seats, status
+   - validate vehicle conflict
+   - validate driver conflict
+
+7. PaymentResource requirements:
+   - show order ID, booking, customer, gross amount, payment type, transaction status, settlement time
+   - make it easy for finance staff to inspect raw Midtrans response or notification
+   - add actions for sync payment status if a service class exists
+
+8. TicketResource requirements:
+   - show ticket code, booking, customer, status, issued_at, used_at
+   - add action to open printable ticket page if implemented
+
+9. Use clean Filament 5 conventions and keep business logic outside resource classes when practical.
+
+10. After implementation:
+   - run the app checks
+   - summarize files added or changed
+   - mention any missing dependencies or follow-up work

@@ -1,0 +1,53 @@
+Continue the Deny Trans backoffice project by implementing payment and ticket workflows.
+
+Tasks:
+1. Create payment service classes under app/Services/Payment:
+   - MidtransService
+   - MidtransWebhookService
+
+2. Add Midtrans config and environment variable usage for:
+   - MIDTRANS_SERVER_KEY
+   - MIDTRANS_CLIENT_KEY
+   - MIDTRANS_IS_PRODUCTION
+   - MIDTRANS_IS_SANITIZED
+   - MIDTRANS_IS_3DS
+   - MIDTRANS_MERCHANT_ID
+
+3. Implement a flow to create Snap transactions from a booking:
+   - generate order_id
+   - store snap_token
+   - store snap_redirect_url
+   - persist raw response
+
+4. Implement a webhook endpoint and controller:
+   - verify and parse Midtrans notification
+   - update payments idempotently
+   - synchronize booking payment_status and booking_status
+
+5. Successful payment rules:
+   - create or update payment as paid
+   - mark booking as paid or confirmed according to the current business flow
+   - generate a ticket if it does not exist
+   - set ticket status to issued
+
+6. Add fallback status sync using Midtrans status API.
+
+7. Create a TicketService or GenerateTicketAction:
+   - generate ticket_code
+   - generate QR code image
+   - create a printable Blade view for ticket
+   - optionally store PDF path placeholder if full PDF generation is not yet added
+
+8. Add Filament actions where useful:
+   - create payment link or snap transaction
+   - sync payment status
+   - open printable ticket page
+
+9. Add robust guards:
+   - do not double-generate tickets
+   - make webhook handling idempotent
+   - wrap critical workflow changes in database transactions
+
+10. Update README with Midtrans setup instructions and webhook testing steps.
+
+11. Run sanity checks and summarize all key file changes.

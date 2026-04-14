@@ -1,0 +1,53 @@
+Build the passenger-facing mobile web app for Deny Trans as a mobile-first web application or PWA.
+
+Important:
+- This is separate from the Filament backoffice.
+- Do not use Filament for customer-facing pages.
+- Keep the customer booking experience clean, fast, and mobile-focused.
+
+Recommended stack:
+Choose one practical path and implement cleanly:
+Option A:
+- Laravel web routes
+- Blade
+- Tailwind CSS
+- Alpine.js where needed
+
+Option B:
+- Laravel API backend
+- Next.js frontend
+
+Prefer the simpler path if the repository is new and speed matters.
+
+Required customer-facing pages:
+1. Landing page
+2. Login and registration by email
+3. Booking home
+4. Schedule selection
+5. Vehicle selection
+6. Passenger details form
+7. Booking confirmation
+8. Midtrans payment page or redirect flow
+9. E-ticket success page
+10. Booking history
+11. Profile page
+
+Core rules:
+- mobile-first responsive layout
+- route focus: Jakarta <-> Cianjur
+- use the same booking, payment, and ticket domain rules as backoffice
+- integrate with Midtrans payment flow
+- display QR-based e-ticket after successful payment
+- authenticated users can view their booking history
+
+If implementing as PWA, also add:
+- manifest
+- icons placeholders
+- installable configuration
+- basic service worker setup if appropriate
+
+At the end:
+- summarize architecture chosen
+- list routes created
+- explain how to run the mobile web app locally
+- list next steps for polishing the customer experience

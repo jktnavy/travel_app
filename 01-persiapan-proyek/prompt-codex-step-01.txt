@@ -1,0 +1,25 @@
+Read AGENTS.md first, inspect the repository, and set up the project structure for Deny Trans.
+
+Goals:
+1. Prepare a monorepo or clearly documented dual-app structure:
+   - backoffice: Laravel 13 + Filament 5
+   - mobile-web: passenger-facing mobile-first app
+2. Add or improve README with architecture overview.
+3. Do not build all modules yet.
+4. Keep the repo structure clear and simple.
+
+Recommended structure:
+- /backoffice
+- /mobile-web
+- /docs
+
+In this step:
+- inspect existing files first
+- create the top-level structure
+- write concise setup notes
+- do not scaffold deep business logic yet
+
+At the end:
+- summarize files created
+- explain which folder should be implemented first
+- list next steps

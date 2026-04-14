@@ -1,0 +1,78 @@
+Continue the Laravel 13 + Filament 5 backoffice project for Deny Trans.
+
+Implement the data foundation carefully and completely.
+
+Tasks:
+1. Create migrations in a safe dependency order for:
+   - customers
+   - routes
+   - pickup_points
+   - vehicles
+   - drivers
+   - schedules
+   - bookings
+   - booking_passengers
+   - payments
+   - tickets
+   - settings
+   - activity_logs
+   - and update users table with internal fields
+
+2. Use these exact domain modeling decisions:
+   - Use App\Models\TravelRoute for the routes table to avoid conflict with Laravel route naming
+   - Add soft deletes where appropriate
+   - Add indexes for commonly filtered columns
+   - Make booking_code, order_id, ticket_code, route code, unit_code, and plate_number unique where appropriate
+
+3. Create enums in app/Enums:
+   - BookingStatus
+   - PaymentStatus
+   - ScheduleStatus
+   - DriverStatus
+   - TicketStatus
+   - VehicleType
+
+4. Add casts on models for enums, dates, datetimes, arrays, and json columns.
+
+5. Create Eloquent model relationships for:
+   - User
+   - Customer
+   - TravelRoute
+   - PickupPoint
+   - Vehicle
+   - Driver
+   - Schedule
+   - Booking
+   - BookingPassenger
+   - Payment
+   - Ticket
+   - Setting
+   - ActivityLog
+
+6. Add useful domain helper methods where suitable:
+   - Schedule::hasAvailableSeats()
+   - Schedule::recalculateSeatStats()
+   - Booking::canBePaid()
+   - Booking::canBeConfirmed()
+   - Booking::markAsCancelled()
+   - Payment::isSuccessful()
+   - Payment::isPending()
+
+7. Create factories and realistic seeders for:
+   - roles and permissions
+   - users
+   - routes
+   - pickup points
+   - vehicles
+   - drivers
+   - customers
+   - schedules
+
+8. Do not implement Filament resources yet in this step unless needed for sanity checks.
+
+9. After implementation:
+   - run migrations
+   - run seeders
+   - fix any issues
+   - summarize changed files
+   - list follow-up steps

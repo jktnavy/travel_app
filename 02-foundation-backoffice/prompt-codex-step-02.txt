@@ -1,0 +1,23 @@
+Work inside the backoffice app only.
+
+Set up the initial foundation for a new Laravel 13 + Filament 5 project called "Deny Trans Office Dashboard".
+
+Tasks:
+1. Inspect the current backoffice codebase first.
+2. Install and configure Filament 5 with one internal admin panel.
+3. Install and configure Spatie laravel-permission.
+4. Add HasRoles to the User model.
+5. Create seeders for roles:
+   - admin
+   - finance
+   - owner
+6. Ensure only authorized internal users can access the Filament panel.
+7. Create a minimal dashboard landing page with different widget placeholders for admin, finance, and owner.
+8. Update README with exact local setup instructions.
+9. Run the necessary checks and report what was changed.
+
+Constraints:
+- Use clean Laravel conventions.
+- Keep changes incremental.
+- Do not scaffold unnecessary modules yet.
+- Prefer sensible defaults and production-friendly structure.

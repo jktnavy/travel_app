@@ -1,0 +1,66 @@
+Design a high-fidelity mobile-first web app and PWA for “Deny Trans”, a passenger-facing shuttle and travel booking service for the Jakarta – Cianjur route.
+
+Goal:
+Create a modern, trustworthy, simple, and conversion-focused booking experience for mobile users in Indonesia.
+
+Platform:
+- Mobile web first
+- Responsive web app
+- PWA-ready UX
+- Android-friendly design
+- Fast-loading card-based UI
+
+Brand direction:
+- clean, premium, safe, modern
+- dark blue, white, and orange or green accents
+- strong CTA buttons
+- clear icons
+- high readability
+- suitable for transport and booking users of all ages
+
+Main screens:
+1. Landing page
+2. Login / Register with email
+3. Home booking search
+4. Schedule selection
+5. Vehicle / crew selection
+6. Passenger detail form
+7. Booking confirmation
+8. Payment page with Midtrans options
+9. Ticket success page
+10. My bookings
+11. Profile page
+
+Key booking flow:
+- login or register by email
+- choose route Jakarta ↔ Cianjur
+- choose departure date
+- choose departure time
+- choose available vehicle
+- input passenger details
+- confirm booking
+- pay via Midtrans
+- receive e-ticket with QR code
+
+Components:
+- sticky bottom CTA
+- mobile bottom navigation
+- route selector
+- passenger selector
+- vehicle cards
+- status badges
+- payment status cards
+- QR ticket block
+- loading, error, and success states
+
+Design requirements:
+- highly mobile-friendly
+- optimized for small screens
+- modern Indonesian travel booking feel
+- premium but practical
+- clean spacing and strong visual hierarchy
+
+Output:
+- high-fidelity mobile web UI
+- PWA-ready interaction patterns
+- consistent design system
