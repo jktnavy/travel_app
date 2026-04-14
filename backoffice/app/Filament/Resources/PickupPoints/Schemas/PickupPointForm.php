@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Filament\Resources\PickupPoints\Schemas;
+
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Schema;
+
+class PickupPointForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Select::make('travel_route_id')
+                    ->relationship('travelRoute', 'id')
+                    ->required(),
+                TextInput::make('name')
+                    ->required(),
+                TextInput::make('city')
+                    ->required(),
+                TextInput::make('direction')
+                    ->required()
+                    ->default('departure'),
+                Textarea::make('address')
+                    ->required()
+                    ->columnSpanFull(),
+                TextInput::make('contact_phone')
+                    ->tel(),
+                TextInput::make('sort_order')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Toggle::make('is_active')
+                    ->required(),
+            ]);
+    }
+}
