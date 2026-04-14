@@ -11,6 +11,8 @@ Stack yang sudah terpasang:
 - Laravel 13
 - Filament 5
 - Spatie `laravel-permission`
+- Laravel Boost / MCP
+- Midtrans PHP SDK
 
 Stack target proyek:
 
@@ -92,6 +94,54 @@ php artisan serve
 ```
 
 Lalu buka `http://127.0.0.1:8000/admin`.
+
+## Midtrans setup
+
+Tambahkan konfigurasi berikut ke `.env`:
+
+```env
+MIDTRANS_SERVER_KEY=SB-Mid-server-xxxx
+MIDTRANS_CLIENT_KEY=SB-Mid-client-xxxx
+MIDTRANS_MERCHANT_ID=G123456789
+MIDTRANS_IS_PRODUCTION=false
+MIDTRANS_IS_SANITIZED=true
+MIDTRANS_IS_3DS=true
+```
+
+Catatan:
+
+- gunakan sandbox key saat development
+- webhook Midtrans diarahkan ke `POST /webhooks/midtrans`
+- endpoint webhook sudah dikecualikan dari CSRF
+
+## Webhook testing
+
+Untuk testing lokal:
+
+1. Jalankan app:
+
+```bash
+php artisan serve
+```
+
+2. Expose endpoint lokal dengan tunneling tool seperti `ngrok` atau `cloudflared`
+
+3. Daftarkan URL webhook publik ke Midtrans:
+
+```text
+https://your-public-url/webhooks/midtrans
+```
+
+4. Buat Snap transaction dari resource booking di panel admin
+
+5. Setelah payment sukses, verifikasi:
+
+- `payments.status` berubah ke `paid`
+- `bookings.payment_status` sinkron
+- `bookings.booking_status` berubah ke `paid`
+- ticket otomatis dibuat dan status menjadi `issued`
+
+Fallback sync manual tersedia dari resource `Payment` melalui action `Sync Status`.
 
 ## Seeder
 

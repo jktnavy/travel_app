@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Payments\Tables;
 
 use App\Filament\Resources\Payments\PaymentResource;
+use App\Models\Payment;
+use App\Services\Payment\MidtransService;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -68,6 +70,13 @@ class PaymentsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                Action::make('sync_status')
+                    ->label('Sync Status')
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('warning')
+                    ->action(function (Payment $record): void {
+                        app(MidtransService::class)->syncPaymentStatus($record);
+                    }),
                 Action::make('inspect_payload')
                     ->label('Raw Payload')
                     ->icon('heroicon-o-document-magnifying-glass')

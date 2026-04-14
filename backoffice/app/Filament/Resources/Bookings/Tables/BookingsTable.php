@@ -7,6 +7,7 @@ use App\Enums\PaymentStatus;
 use App\Filament\Resources\Payments\PaymentResource;
 use App\Filament\Resources\Tickets\TicketResource;
 use App\Models\Booking;
+use App\Services\Payment\MidtransService;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -117,6 +118,15 @@ class BookingsTable
                     ->label('Payment')
                     ->url(fn (Booking $record): ?string => $record->latestPayment ? PaymentResource::getUrl('view', ['record' => $record->latestPayment]) : null)
                     ->visible(fn (Booking $record): bool => $record->latestPayment()->exists()),
+                Action::make('create_snap')
+                    ->icon('heroicon-o-link')
+                    ->label('Create Snap')
+                    ->color('warning')
+                    ->requiresConfirmation()
+                    ->visible(fn (Booking $record): bool => $record->canBePaid())
+                    ->action(function (Booking $record): void {
+                        app(MidtransService::class)->createSnapTransaction($record);
+                    }),
                 Action::make('ticket')
                     ->icon('heroicon-o-qr-code')
                     ->label('Ticket')

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Tickets\Tables;
 
+use App\Models\Ticket;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -62,7 +63,8 @@ class TicketsTable
                 Action::make('print')
                     ->label('Print')
                     ->icon('heroicon-o-printer')
-                    ->visible(false),
+                    ->url(fn (Ticket $record): string => route('tickets.print', $record->booking))
+                    ->openUrlInNewTab(),
                 ViewAction::make(),
                 EditAction::make(),
             ])
