@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -15,8 +16,24 @@ class RoleSeeder extends Seeder
     {
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        foreach (['admin', 'finance', 'owner'] as $roleName) {
-            Role::findOrCreate($roleName, 'web');
-        }
+        $admin = Role::findOrCreate('admin', 'web');
+        $finance = Role::findOrCreate('finance', 'web');
+        $owner = Role::findOrCreate('owner', 'web');
+
+        $admin->syncPermissions(Permission::query()->pluck('name')->all());
+
+        $finance->syncPermissions([
+            'view dashboard',
+            'manage bookings',
+            'manage payments',
+            'manage tickets',
+            'view reports',
+        ]);
+
+        $owner->syncPermissions([
+            'view dashboard',
+            'view reports',
+            'manage settings',
+        ]);
     }
 }

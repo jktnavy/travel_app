@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('drivers', function (Blueprint $table): void {
+            $table->id();
+            $table->string('name');
+            $table->string('phone', 30)->unique();
+            $table->string('license_number')->unique();
+            $table->date('license_expires_at')->nullable()->index();
+            $table->string('status', 30)->default('active')->index();
+            $table->date('hired_at')->nullable();
+            $table->text('address')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('drivers');
+    }
+};

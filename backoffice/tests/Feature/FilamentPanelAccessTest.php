@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Database\Seeders\PermissionSeeder;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -20,6 +21,7 @@ class FilamentPanelAccessTest extends TestCase
 
     public function test_internal_user_with_role_can_access_filament_panel(): void
     {
+        $this->seed(PermissionSeeder::class);
         $this->seed(RoleSeeder::class);
 
         $user = User::factory()->create();
@@ -32,6 +34,7 @@ class FilamentPanelAccessTest extends TestCase
 
     public function test_user_without_internal_role_cannot_access_filament_panel(): void
     {
+        $this->seed(PermissionSeeder::class);
         $this->seed(RoleSeeder::class);
 
         $user = User::factory()->create();
